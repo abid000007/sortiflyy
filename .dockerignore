@@ -1,0 +1,15 @@
+# Exclude node modules and local env
+node_modules
+dist
+.env
+.env.local
+.DS_Store
+.git
+.gitignore
+npm-debug.log
+yarn-error.log
+pnpm-lock.yaml
+package-lock.json
+/.idea
+/.vscode
+coverage
