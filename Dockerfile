@@ -8,7 +8,6 @@ WORKDIR /app
 
 # Install dependencies
 COPY package.json package-lock.json* ./
-COPY pnpm-lock.yaml* ./
 RUN apk add --no-cache git python3 make g++ || true
 RUN npm ci --silent
 
