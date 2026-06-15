@@ -16,7 +16,7 @@ SMTP_SERVER = os.getenv('SMTP_SERVER', 'smtp.gmail.com')
 SMTP_PORT = int(os.getenv('SMTP_PORT', 587))
 EMAIL_ADDRESS = os.getenv('EMAIL_ADDRESS', 'abidrahim05@gmail.com')
 EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD', '')
-RECIPIENT_EMAIL = 'abidrahim05@gmail.com'
+RECIPIENT_EMAIL = os.getenv('RECIPIENT_EMAIL', 'abidrahim@sortifly.com')
 
 @app.route('/api/demo-request', methods=['POST'])
 def demo_request():

@@ -83,9 +83,9 @@ export default function Contact() {
             </ul>
 
             <div className="space-y-4 border-t border-white/10 pt-6">
-              <a href="mailto:abidrahim05@gmail.com" className="flex items-center gap-3 text-sm text-zinc-300 hover:text-white transition-colors">
+              <a href="mailto:abidrahim@sortifly.com" className="flex items-center gap-3 text-sm text-zinc-300 hover:text-white transition-colors">
                 <span className="p-2.5 rounded-xl bg-white/5 border border-white/15 text-zinc-100"><Mail size={16} /></span>
-                abidrahim05@gmail.com
+                abidrahim@sortifly.com
               </a>
               <a href="tel:+923334029849" className="flex items-center gap-3 text-sm text-zinc-300 hover:text-white transition-colors">
                 <span className="p-2.5 rounded-xl bg-white/5 border border-white/15 text-zinc-100"><Phone size={16} /></span>

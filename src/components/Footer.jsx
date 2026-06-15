@@ -49,8 +49,8 @@ export default function Footer() {
             <h4 className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-4">Get in Touch</h4>
             <ul className="space-y-3 text-sm">
               <li>
-                <a href="mailto:abidrahim05@gmail.com" className="flex items-center gap-2.5 text-zinc-400 hover:text-white transition-colors">
-                  <Mail size={15} /> abidrahim05@gmail.com
+                <a href="mailto:abidrahim@sortifly.com" className="flex items-center gap-2.5 text-zinc-400 hover:text-white transition-colors">
+                  <Mail size={15} /> abidrahim@sortifly.com
                 </a>
               </li>
               <li>
