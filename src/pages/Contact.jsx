@@ -33,8 +33,19 @@ export default function Contact() {
         body: JSON.stringify({
           access_key: WEB3FORMS_KEY,
           subject: `New Demo Request from ${formData.name} — ${formData.company}`,
+          // Web3Forms always delivers to the address the access key is
+          // registered to (abidrahim@sortifly.com). `from_name` is the sender
+          // label and `replyto` is what you reply to — the submitter.
           from_name: 'Sortifly Website',
-          ...formData,
+          replyto: formData.email,
+          // Send the form fields under names that won't be reinterpreted as
+          // routing fields by Web3Forms.
+          name: formData.name,
+          company: formData.company,
+          submitter_email: formData.email,
+          phone: formData.phone,
+          industry: formData.industry,
+          message: formData.message,
         }),
       })
       const data = await res.json()
