@@ -1,0 +1,30 @@
+# One command to run the site:
+#   docker compose up -d --build
+#
+# Frontend-only: nginx serves the built React app on 80/443 and obtains/renews
+# the Let's Encrypt cert. The contact form emails submissions via Web3Forms
+# directly from the browser, so there is no backend service.
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Reads VITE_WEB3FORMS_KEY from your shell or .env at build time.
+        VITE_WEB3FORMS_KEY: ${VITE_WEB3FORMS_KEY:-}
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - CERTBOT_EMAIL=abidrahim@sortifly.com
+      - CERTBOT_DOMAIN=sortifly.com
+      - CERTBOT_EXTRA_DOMAIN=www.sortifly.com
+      # - CERTBOT_STAGING=1   # uncomment while testing to avoid rate limits
+    volumes:
+      - letsencrypt:/etc/letsencrypt
+      - certbot_webroot:/var/www/certbot
+    restart: unless-stopped
+
+volumes:
+  letsencrypt:
+  certbot_webroot:

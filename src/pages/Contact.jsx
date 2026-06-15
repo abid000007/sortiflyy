@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Check, Mail, Phone, Clock, ArrowRight } from 'lucide-react'
-import axios from 'axios'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001'
+// Web3Forms delivers the submission straight to our inbox — no backend needed.
+// Get a free access key at https://web3forms.com (enter abidrahim@sortifly.com),
+// then put it in .env as VITE_WEB3FORMS_KEY=your-key.
+const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY ?? ''
 
 const inputCls =
   'w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 placeholder-zinc-600 ' +
@@ -25,12 +27,23 @@ export default function Contact() {
     e.preventDefault()
     setLoading(true)
     try {
-      await axios.post(`${API_URL}/api/demo-request`, formData)
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `New Demo Request from ${formData.name} — ${formData.company}`,
+          from_name: 'Sortifly Website',
+          ...formData,
+        }),
+      })
+      const data = await res.json()
+      if (!data.success) throw new Error(data.message || 'Submission failed')
       setSuccess(true)
       setFormData({ name: '', company: '', email: '', phone: '', industry: '', message: '' })
     } catch (error) {
       console.error('Error:', error)
-      alert('Failed to submit. Make sure the backend server is running (python server.py).')
+      alert('Failed to submit. Please try again or email us directly at abidrahim@sortifly.com.')
     } finally {
       setLoading(false)
     }

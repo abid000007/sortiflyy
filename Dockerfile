@@ -11,7 +11,10 @@ COPY package.json package-lock.json* ./
 RUN apk add --no-cache git python3 make g++ || true
 RUN npm ci --legacy-peer-deps --silent
 
-# Copy source and build
+# Web3Forms access key is baked into the bundle at build time (Vite inlines
+# VITE_* vars). Passed via build arg since .env is excluded from the context.
+ARG VITE_WEB3FORMS_KEY=""
+ENV VITE_WEB3FORMS_KEY=$VITE_WEB3FORMS_KEY
 COPY . .
 RUN npm run build
 
