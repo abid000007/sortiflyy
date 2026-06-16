@@ -1,13 +1,13 @@
-# HTTPS server for sortifly.com. This file is copied into
-# /etc/nginx/conf.d/ by the entrypoint only after certbot has issued a
-# certificate, so nginx never fails to start on a missing cert.
+# HTTPS server template. The entrypoint fills in ${SERVER_NAME}, ${SSL_CERT}
+# and ${SSL_KEY} (pointing at either a real Let's Encrypt cert or a self-signed
+# bootstrap cert) and writes the result to /etc/nginx/conf.d/ssl.conf.
 server {
     listen 443 ssl;
     http2 on;
-    server_name sortifly.com www.sortifly.com;
+    server_name ${SERVER_NAME};
 
-    ssl_certificate     /etc/letsencrypt/live/sortifly.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/sortifly.com/privkey.pem;
+    ssl_certificate     ${SSL_CERT};
+    ssl_certificate_key ${SSL_KEY};
 
     # Modern, secure defaults.
     ssl_protocols TLSv1.2 TLSv1.3;

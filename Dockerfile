@@ -21,15 +21,16 @@ RUN npm run build
 ### Stage 2: production image
 FROM nginx:stable-alpine AS production
 
-# certbot (+ openssl) for issuing/renewing the Let's Encrypt cert at runtime
-RUN apk add --no-cache certbot openssl
+# certbot + openssl (cert issuance/renewal & self-signed bootstrap),
+# gettext provides envsubst used to render the HTTPS config at runtime.
+RUN apk add --no-cache certbot openssl gettext
 
 COPY --from=build /app/dist /usr/share/nginx/html
 
 # HTTP server (ACME challenge + HTTPS redirect) is active immediately.
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-# HTTPS server block; enabled by the entrypoint once a cert exists.
-COPY nginx-ssl.conf /etc/nginx/nginx-ssl.conf
+# HTTPS server template; rendered to conf.d/ssl.conf by the entrypoint.
+COPY nginx-ssl.conf.template /etc/nginx/nginx-ssl.conf.template
 
 COPY docker-entrypoint.sh /docker-entrypoint-certbot.sh
 RUN chmod +x /docker-entrypoint-certbot.sh
