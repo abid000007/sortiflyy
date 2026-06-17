@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom'
 import { Mail, Phone, ArrowUpRight } from 'lucide-react'
 
 const services = [
-  'AI Voice Agents', 'Process Automation', 'AWS Infrastructure',
-  'Compliance & Security', 'SaaS Development', 'CRM Integrations'
+  'Mobile App Development', 'Web Development',
+  'SaaS Development', 'AI Model Development'
 ]
 
 export default function Footer() {

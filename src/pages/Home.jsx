@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion, useInView, animate } from 'framer-motion'
 import {
   Phone, Workflow, Cloud, ShieldCheck, Boxes, Database, Zap, MessagesSquare,
+  Smartphone, Globe, BrainCircuit,
   ArrowRight, Check, Sparkles, Star
 } from 'lucide-react'
 import Hero3D from '../components/Hero3D'
@@ -67,58 +68,30 @@ function SectionHead({ eyebrow, title, sub }) {
 
 const services = [
   {
-    icon: Phone,
-    title: 'AI Voice Agents',
-    desc: 'Human-sounding agents that answer every call in under 2 rings — qualifying leads, booking appointments, and selling 24/7.',
+    icon: Smartphone,
+    title: 'Mobile App Development',
+    desc: 'Native and cross-platform iOS & Android apps — built with React Native and Flutter. Fast, polished, and App Store / Play Store ready.',
     chip: 'bg-white/5 text-zinc-100 border-white/15',
     glow: 'group-hover:shadow-white/10'
   },
   {
-    icon: Workflow,
-    title: 'Business Process Automation',
-    desc: 'End-to-end workflow automation: documents generated, invoices sent, CRMs updated, teams notified — zero manual steps.',
-    chip: 'bg-white/5 text-zinc-100 border-white/15',
-    glow: 'group-hover:shadow-white/10'
-  },
-  {
-    icon: Cloud,
-    title: 'AWS Cloud Infrastructure',
-    desc: 'Production-grade VPC design, EKS/ECS, Terraform IaC, CI/CD pipelines, and 24×7 managed operations at 99.99% uptime.',
-    chip: 'bg-white/5 text-zinc-100 border-white/15',
-    glow: 'group-hover:shadow-white/10'
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Compliance & Security',
-    desc: 'SOC 2-aligned controls, HIPAA-ready architectures, threat modeling, penetration testing, and audit-ready evidence trails.',
+    icon: Globe,
+    title: 'Web Development',
+    desc: 'High-performance websites and web apps — modern React frontends, robust APIs, and responsive, pixel-perfect UI that converts.',
     chip: 'bg-white/5 text-zinc-100 border-white/15',
     glow: 'group-hover:shadow-white/10'
   },
   {
     icon: Boxes,
-    title: 'SaaS App Development',
-    desc: 'Multi-tenant SaaS platforms built end-to-end: auth, billing, dashboards, APIs — from MVP to scale in weeks, not quarters.',
+    title: 'SaaS Development',
+    desc: 'Multi-tenant SaaS platforms built end-to-end: auth, billing, dashboards, and APIs — from MVP to scale in weeks, not quarters.',
     chip: 'bg-white/5 text-zinc-100 border-white/15',
     glow: 'group-hover:shadow-white/10'
   },
   {
-    icon: Database,
-    title: 'Data & Analytics',
-    desc: 'Warehouses, pipelines, and real-time dashboards that turn every call transcript and customer event into revenue insight.',
-    chip: 'bg-white/5 text-zinc-100 border-white/15',
-    glow: 'group-hover:shadow-white/10'
-  },
-  {
-    icon: Zap,
-    title: 'CRM & API Integrations',
-    desc: 'Native HubSpot, Salesforce, Zapier and Twilio integrations — plus custom REST APIs and webhooks for anything else.',
-    chip: 'bg-white/5 text-zinc-100 border-white/15',
-    glow: 'group-hover:shadow-white/10'
-  },
-  {
-    icon: MessagesSquare,
-    title: 'Support Automation',
-    desc: 'Tier-1 tickets resolved instantly across voice, SMS, and chat. Complex cases escalate to humans with full context attached.',
+    icon: BrainCircuit,
+    title: 'AI Model Development',
+    desc: 'Custom AI/ML models — LLM fine-tuning, RAG pipelines, computer vision, and predictive analytics, deployed to production.',
     chip: 'bg-white/5 text-zinc-100 border-white/15',
     glow: 'group-hover:shadow-white/10'
   }
@@ -336,8 +309,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <SectionHead
             eyebrow="Full-Stack Capabilities"
-            title={<>One Team. <span className="text-shimmer">Eight Superpowers.</span></>}
-            sub="Most agencies sell you a chatbot. We engineer the entire system — voice AI, automations, cloud, compliance, and the SaaS products on top."
+            title={<>One Team. <span className="text-shimmer">Every Layer.</span></>}
+            sub="From mobile and web to full SaaS platforms and custom AI models — we design, build, and ship the entire product end-to-end."
           />
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {services.map((s, i) => (
@@ -348,8 +321,8 @@ export default function Home() {
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ delay: (i % 4) * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
-                <TiltCard className={`group glass rounded-2xl p-6 h-full transition-shadow duration-300 hover:shadow-2xl ${s.glow}`}>
-                  <div className={`inline-flex p-3 rounded-xl border mb-5 ${s.chip}`}>
+                <TiltCard className={`group ai-card glass rounded-2xl p-6 h-full transition-shadow duration-300 hover:shadow-2xl ${s.glow}`}>
+                  <div className={`inline-flex p-3 rounded-xl border mb-5 transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-0.5 ${s.chip}`}>
                     <s.icon size={22} />
                   </div>
                   <h3 className="font-semibold text-lg mb-2.5">{s.title}</h3>
@@ -427,78 +400,6 @@ export default function Home() {
                     </div>
                   </div>
                 </TiltCard>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ============ PRICING ============ */}
-      <section id="pricing" className="relative py-24 px-4">
-        <div className="max-w-6xl mx-auto">
-          <SectionHead
-            eyebrow="Pricing"
-            title="Simple, Transparent Pricing"
-            sub="Every engagement starts with a free architecture consultation. No long-term contracts."
-          />
-          <div className="grid md:grid-cols-3 gap-6 items-stretch">
-            {[
-              {
-                name: 'Starter Agent',
-                price: '$2,000',
-                desc: 'Your first AI voice agent, live in 7 days',
-                features: ['1 AI voice agent (inbound)', 'Calendar + CRM integration', 'Call transcripts & summaries', 'Launch support included'],
-                cta: 'Get Started'
-              },
-              {
-                name: 'Growth System',
-                price: '$5,000',
-                desc: 'Agents + automations for scaling teams',
-                features: ['3 agents (inbound + outbound)', 'Lead scoring & qualification', 'Workflow automations', 'AWS deployment included', 'Weekly optimization'],
-                popular: true,
-                cta: 'Book a Demo'
-              },
-              {
-                name: 'Enterprise',
-                price: 'Custom',
-                desc: 'Full-stack engineering partnership',
-                features: ['Unlimited agents & workflows', 'Custom SaaS development', 'SOC 2 / HIPAA compliance', 'Dedicated architect & SLA'],
-                cta: 'Talk to an Architect'
-              }
-            ].map((p, i) => (
-              <motion.div
-                key={p.name}
-                initial={{ opacity: 0, y: 36 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.12 }}
-                className={`relative glass rounded-3xl p-8 flex flex-col ${p.popular ? 'border-white/40 shadow-2xl shadow-white/10 md:scale-[1.04]' : ''}`}
-              >
-                {p.popular && (
-                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 text-xs font-bold uppercase tracking-wider rounded-full bg-white text-black">
-                    Most Popular
-                  </span>
-                )}
-                <h3 className="text-sm font-bold uppercase tracking-widest text-zinc-300 mb-3">{p.name}</h3>
-                <div className="text-4xl font-bold mb-2">{p.price}</div>
-                <p className="text-sm text-zinc-400 mb-7">{p.desc}</p>
-                <ul className="space-y-3 mb-8 flex-1">
-                  {p.features.map((f) => (
-                    <li key={f} className="flex gap-2.5 text-sm text-zinc-300">
-                      <Check size={16} className="text-emerald-400 shrink-0 mt-0.5" /> {f}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  to="/contact"
-                  className={`block text-center px-6 py-3 rounded-full font-semibold transition-all hover:-translate-y-0.5 ${
-                    p.popular
-                      ? 'bg-white text-black shadow-lg shadow-white/10'
-                      : 'glass hover:border-white/30'
-                  }`}
-                >
-                  {p.cta}
-                </Link>
               </motion.div>
             ))}
           </div>

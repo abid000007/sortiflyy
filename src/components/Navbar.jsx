@@ -5,7 +5,6 @@ import { Menu, X, ArrowRight } from 'lucide-react'
 const links = [
   { to: '/', label: 'Home' },
   { to: '/#services', label: 'Services', anchor: true },
-  { to: '/#pricing', label: 'Pricing', anchor: true },
   { to: '/contact', label: 'Contact' }
 ]
 
